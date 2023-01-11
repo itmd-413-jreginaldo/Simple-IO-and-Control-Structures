@@ -62,19 +62,30 @@ def question_two():
         # Red light status troubleshooting tree
         def switch_red_status_light():
             print("\nShut off all input lines.")
-            meter_three_value = input("\nWhat is the value displayed on 'Meter 3?' > ")
+            meter_three_value = 0
 
-            # Check if user input is NOT an integer value
-            # Will NOT work for decimal values
-            while not meter_three_value.isdigit():
-                print("\nUnknown value(s) detected, numeric values only.")
+            # Input validation
+            meter_three_value_is_num = False
+            meter_three_value_is_float = False
+            while not meter_three_value_is_num and not meter_three_value_is_float:
                 meter_three_value = input("\nWhat is the value displayed on 'Meter 3?' > ")
 
-            # Cast meter_three_value to int before conditional statements
-            int(meter_three_value)
+                # Check if user input is an integer value
+                if not meter_three_value.isdigit():
+                    meter_three_value_is_num = False
+                else:
+                    meter_three_value_is_num = True
+
+                # Check if user input is a decimal value
+                try:
+                    float(meter_three_value)
+                    meter_three_value_is_float = True
+                except ValueError:
+                    print("Unknown value(s) detected, numeric values only")
+                    meter_three_value_is_float = False
 
             # Troubleshooting tree if value is < 50
-            if meter_three_value < 50:
+            if float(meter_three_value) < 50.00:
                 print("\nCheck main line for test pressure.")
                 test_pressure_value = 0
                 while test_pressure_value != 1 and test_pressure_value != 2:
@@ -127,9 +138,8 @@ def question_two():
 
         # Automatically set user input to lowercase to handle capital inputs
         user_program_choice = str.lower(input(
-            "\n================================"
-            "\nTo restart the guide, enter 'Y': "
-            "\n================================"
+            "\n================================="
+            "\nTo restart the guide, enter 'Y' > "
         ))
 
 
