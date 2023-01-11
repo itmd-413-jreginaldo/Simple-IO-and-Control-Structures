@@ -13,8 +13,8 @@ Using the chart provided in the homework assignment, accurately create a program
 
 The program will be able to restart continually until the user chooses to exit.
 
-For this question, I have opted for more of a "menu" style approach rather than purely user-input to further simplify
-the process.
+For this question, I have opted for more of a "menu" style approach rather than utilizing purely user-input to further
+simplify the validation process.
 
 
 Author: Josh Reginaldo
@@ -49,15 +49,15 @@ def question_two():
               f"\n=================================\n")
 
         # Attempt to get status light value
-        status_light = 0
-        while status_light != 1 and status_light != 2 and status_light != 3:
-            status_light = int(input(
+        status_light = "0"
+        while status_light != "1" and status_light != "2" and status_light != "3":
+            status_light = input(
                 "What color is the status light?"
                 "\n1: Green"
                 "\n2: Red"
                 "\n3: Amber"
                 "\nEnter corresponding number > "
-            ))
+            )
 
         # Red light status troubleshooting tree
         def switch_red_status_light():
@@ -87,29 +87,29 @@ def question_two():
             # Troubleshooting tree if value is < 50
             if float(meter_three_value) < 50.00:
                 print("\nCheck main line for test pressure.")
-                test_pressure_value = 0
-                while test_pressure_value != 1 and test_pressure_value != 2:
-                    test_pressure_value = int(input(
+                test_pressure_value = "0"
+                while test_pressure_value != "1" and test_pressure_value != "2" and test_pressure_value != "3":
+                    test_pressure_value = input(
                         "\nWhat is the test pressure value?"
                         "\n1: Normal"
                         "\n2: High"
                         "\n3: Low"
                         "\nEnter corresponding number > "
-                    ))
+                    )
 
                 match test_pressure_value:
-                    case 1:
+                    case "1":
                         print("\nRefer to motor service manual")
-                    case 2:
+                    case "2":
                         print("\nRefer to main line manual")
-                    case 3:
+                    case "3":
                         print("\nRefer to main line manual")
 
             # Troubleshooting tree if value is >= 50
             else:
                 print("\nMeasure flow velocity at inlet 2-B.")
-                flow_velocity = 0
-                while flow_velocity != 1 and flow_velocity != 2:
+                flow_velocity = "0"
+                while flow_velocity != "1" and flow_velocity != "2" and flow_velocity != "3":
                     flow_velocity = int(input(
                         "\nWhat is the flow velocity value at 'Inlet 2-B?'"
                         "\n1: Normal"
@@ -119,20 +119,20 @@ def question_two():
                     ))
 
                 match flow_velocity:
-                    case 1:
+                    case "1":
                         print("\nRefer to inlet service manual")
-                    case 2:
+                    case "2":
                         print("\nRefer unit for factory service")
-                    case 3:
+                    case "3":
                         print("\nRefer unit for factory service")
 
         # Using status_light, switch to appropriate result
         match status_light:
-            case 1:
+            case "1":
                 print("\nDo restart procedure")
-            case 2:
+            case "2":
                 switch_red_status_light()
-            case 3:
+            case "3":
                 print("\nCheck fuel line service routine")
 
 
@@ -141,7 +141,6 @@ def question_two():
             "\n================================="
             "\nTo restart the guide, enter 'Y' > "
         ))
-
 
 def main():
     # question_one()
