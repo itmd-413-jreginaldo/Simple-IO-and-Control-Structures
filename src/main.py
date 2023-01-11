@@ -13,6 +13,9 @@ Using the chart provided in the homework assignment, accurately create a program
 
 The program will be able to restart continually until the user chooses to exit.
 
+For this question, I have opted for more of a "menu" style approach rather than purely user-input to further simplify
+the process.
+
 
 Author: Josh Reginaldo
 GitHub: https://github.com/itmd-413-jreginaldo/Simple-IO-and-Control-Structures
@@ -45,9 +48,7 @@ def question_two():
               f"DIESEL ENGINE TROUBLESHOOTING GUIDE"
               f"\n=================================\n")
 
-        """
-        Attempt to get status light indicator
-        """
+        # Attempt to get status light value
         status_light = 0
         while status_light != 1 and status_light != 2 and status_light != 3:
             status_light = int(input(
@@ -58,10 +59,21 @@ def question_two():
                 "\nEnter corresponding number > "
             ))
 
+        # Red light status troubleshooting tree
         def switch_red_status_light():
             print("\nShut off all input lines.")
-            meter_three_value = float(input("\nWhat is the value displayed on 'Meter 3?' > "))
+            meter_three_value = input("\nWhat is the value displayed on 'Meter 3?' > ")
 
+            # Check if user input is NOT an integer value
+            # Will NOT work for decimal values
+            while not meter_three_value.isdigit():
+                print("\nUnknown value(s) detected, numeric values only.")
+                meter_three_value = input("\nWhat is the value displayed on 'Meter 3?' > ")
+
+            # Cast meter_three_value to int before conditional statements
+            int(meter_three_value)
+
+            # Troubleshooting tree if value is < 50
             if meter_three_value < 50:
                 print("\nCheck main line for test pressure.")
                 test_pressure_value = 0
@@ -81,6 +93,8 @@ def question_two():
                         print("\nRefer to main line manual")
                     case 3:
                         print("\nRefer to main line manual")
+
+            # Troubleshooting tree if value is >= 50
             else:
                 print("\nMeasure flow velocity at inlet 2-B.")
                 flow_velocity = 0
@@ -112,7 +126,11 @@ def question_two():
 
 
         # Automatically set user input to lowercase to handle capital inputs
-        user_program_choice = str.lower(input("\nTo restart the guide, enter 'Y': "))
+        user_program_choice = str.lower(input(
+            "\n================================"
+            "\nTo restart the guide, enter 'Y': "
+            "\n================================"
+        ))
 
 
 def main():
